@@ -7,12 +7,21 @@ function setup(){
   // 配列をランダムに初期化する
   let scores = [];
   for(let i = 0; i < 10; i++){
-    scores[i] = random(20, 100); // 60以上100未満のランダムな数を代入
+    scores[i] = random(60, 100); // 60以上100未満のランダムな数を代入
   }
 
   // 円グラフを描くには割合が必要なので合計を計算しておく
   let total = 0;
-  for(let i = 0; i < scores.length; i++){ total += scores[i]; }
-
-  // BLANK[1]
+  for(let i = 0; i < scores.length; i++){
+    total += scores[i];
+  }
+  let start=0
+  for(let i = 0; i < scores.length; i++){
+    const cx = width /2;
+    const cy = height /2;
+    const R = width * 0.6;
+    let end = scores[i]/total+start;
+    arc(cx,cy,R,R,TWO_PI*start,TWO_PI*end,PIE);
+    start = end;
+  }
 }
